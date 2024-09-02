@@ -29,11 +29,6 @@ public class Tarnished extends Player{
         return actions;
     }
 
-
-    private boolean canPickUp(WeaponItem weapon) {
-        return this.getAttribute(TarnishedActorAttributes.STRENGTH) >= weapon.getRequiredStrength();
-    }
-
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
         display.println(this.toString());

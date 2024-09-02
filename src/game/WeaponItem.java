@@ -46,6 +46,7 @@ public class WeaponItem extends Item implements Weapon {
     public ActionList allowableActions(Actor otherActor, Location location) {
         ActionList actions = new ActionList();
         if (otherActor instanceof Tarnished) {
+            // TODO: Dont use isinstanceof
             Tarnished tarnished = (Tarnished) otherActor;
             if (tarnished.getAttribute(TarnishedActorAttributes.STRENGTH) >= this.getRequiredStrength()) {
                 actions.add(new PickUpAction(this));
