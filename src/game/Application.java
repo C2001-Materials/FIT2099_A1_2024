@@ -49,8 +49,8 @@ public class Application {
             }
         }
 
-        Player player = new Player("Tarnished", '@', 150);
-        world.addPlayer(player, gameMap.at(7, 4));
+        Player tarnished = new Tarnished("Tarnished", '@', 150);
+        world.addPlayer(tarnished, gameMap.at(7, 4));
 
         gameMap.at(42, 4).addActor(new FurnaceGolem());
 
