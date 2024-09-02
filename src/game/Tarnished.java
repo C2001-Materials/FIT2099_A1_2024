@@ -17,8 +17,8 @@ import java.util.List;
 
 public class Tarnished extends Player {
 
-    public Tarnished(String name, char displayChar) {
-        super(name, displayChar, 150);
+    public Tarnished(String name, char displayChar, int hitPoints) {
+        super(name, displayChar, hitPoints);
         this.addAttribute(BaseActorAttributes.MANA, new BaseActorAttribute(100));
         this.addAttribute(TarnishedActorAttributes.STRENGTH, new BaseActorAttribute(5));
     }
