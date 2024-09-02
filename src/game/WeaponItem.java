@@ -1,8 +1,10 @@
 package game;
 
+import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.*;
 import edu.monash.fit2099.engine.positions.GameMap;
+import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.Weapon;
 
 import java.util.Random;
@@ -16,6 +18,7 @@ public class WeaponItem extends Item implements Weapon {
     private int hitRate;
     private final String verb;
     private float damageMultiplier;
+    private int requiredStrength;
 
     /**
      * Constructor.
@@ -26,12 +29,30 @@ public class WeaponItem extends Item implements Weapon {
      * @param verb        verb to use for this weapon, e.g. "hits", "zaps"
      * @param hitRate     the probability/chance to hit the target.
      */
-    public WeaponItem(String name, char displayChar, int damage, String verb, int hitRate) {
+    public WeaponItem(String name, char displayChar, int damage, String verb, int hitRate, int requiredStrength) {
         super(name, displayChar, true);
         this.damage = damage;
         this.verb = verb;
         this.hitRate = hitRate;
         this.damageMultiplier = DEFAULT_DAMAGE_MULTIPLIER;
+        this.requiredStrength = requiredStrength;
+    }
+
+    public int getRequiredStrength() {
+        return requiredStrength;
+    }
+
+    @Override
+    public ActionList allowableActions(Actor otherActor, Location location) {
+        ActionList actions = new ActionList();
+        if (otherActor instanceof Tarnished) {
+            Tarnished tarnished = (Tarnished) otherActor;
+            if (tarnished.getAttribute(TarnishedActorAttributes.STRENGTH) >= this.getRequiredStrength()) {
+                actions.add(new PickUpAction(this));
+                actions.add(new DropAction(this));
+            }
+        }
+        return actions;
     }
 
     @Override
