@@ -53,8 +53,8 @@ public class Application {
         world.addPlayer(tarnished, gameMap.at(7, 4));
 
         gameMap.at(42, 4).addActor(new FurnaceGolem());
-        gameMap.at(7, 8).addItem(new GreatKnife());
-        gameMap.at(14, 8).addItem(new ShortSword());
+        gameMap.at(6, 4).addItem(new GreatKnife());
+        gameMap.at(8, 4).addItem(new ShortSword());
 
         world.run();
     }

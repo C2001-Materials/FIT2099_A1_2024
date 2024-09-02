@@ -43,17 +43,14 @@ public class WeaponItem extends Item implements Weapon {
     }
 
     @Override
-    public ActionList allowableActions(Actor otherActor, Location location) {
-        ActionList actions = new ActionList();
-        if (otherActor instanceof Tarnished) {
-            // TODO: Dont use isinstanceof
-            Tarnished tarnished = (Tarnished) otherActor;
-            if (tarnished.getAttribute(TarnishedActorAttributes.STRENGTH) >= this.getRequiredStrength()) {
-                actions.add(new PickUpAction(this));
-                actions.add(new DropAction(this));
+    public PickUpAction getPickUpAction(Actor actor) {
+        if (portable && actor instanceof Tarnished) {
+            if (((Tarnished) actor).getAttribute(TarnishedActorAttributes.STRENGTH) // TODO: Dont use isinstanceof
+                    >= this.getRequiredStrength()) {
+                return new PickUpAction(this);
             }
         }
-        return actions;
+        return null;
     }
 
     @Override
