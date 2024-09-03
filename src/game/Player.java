@@ -40,14 +40,12 @@ public class Player extends Actor {
 
         // return/print the console menu
         Menu menu = new Menu(actions);
-        display.println(this.toString());
+
+        display.println(super.toString());
+        display.println("Mana: (" + this.getAttribute(BaseActorAttributes.MANA) + "/" + this.getAttributeMaximum(BaseActorAttributes.MANA) + ")");
+        display.println("Strength: (" + this.getAttribute(TarnishedActorAttributes.STRENGTH) + ")");
+
         return menu.showMenu(this, display);
     }
 
-    @Override
-    public String toString() {
-        return super.toString() + " , "
-                + "Mana: (" + this.getAttribute(BaseActorAttributes.MANA) + "/" + this.getAttributeMaximum(BaseActorAttributes.MANA) + " ) "
-                + "Strength: (" + this.getAttribute(TarnishedActorAttributes.STRENGTH) + ") ";
-    }
 }
