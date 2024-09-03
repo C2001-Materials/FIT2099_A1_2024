@@ -65,8 +65,8 @@ public class Application {
         ShadowtreeFragment stF5 = new ShadowtreeFragment();
 
         gameMap.at(42, 4).addActor(new FurnaceGolem());
-        gameMap.at(6, 4).addItem(greatKnife);
-        gameMap.at(8, 4).addItem(shortSword);
+        gameMap.at(6, 7).addItem(greatKnife);
+        gameMap.at(8, 8).addItem(shortSword);
 
         gameMap.at(6, 5).addItem(flaskOfHealing);
         gameMap.at(8, 5).addItem(flaskOfRejuvenation);

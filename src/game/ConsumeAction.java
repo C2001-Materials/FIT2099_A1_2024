@@ -15,7 +15,7 @@ public class ConsumeAction extends Action {
     public String execute(Actor actor, GameMap map) {
         boolean consumed = consumableItem.consume(actor);
         if (consumed) {
-            return menuDescription(actor);
+            return menuDescription(actor) + " and is now feeling better!";
         } else {
             return consumableItem + " is empty";
         }
