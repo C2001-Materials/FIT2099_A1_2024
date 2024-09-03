@@ -49,12 +49,15 @@ public class Application {
             }
         }
 
-        Player tarnished = new Tarnished("Tarnished", '@', 150);
+        Player tarnished = new Player("Tarnished", '@', 150);
         world.addPlayer(tarnished, gameMap.at(7, 4));
 
+        WeaponItem greatKnife = new GreatKnife();
+        WeaponItem shortSword = new ShortSword();
+
         gameMap.at(42, 4).addActor(new FurnaceGolem());
-        gameMap.at(6, 4).addItem(new GreatKnife());
-        gameMap.at(8, 4).addItem(new ShortSword());
+        gameMap.at(6, 4).addItem(greatKnife);
+        gameMap.at(8, 4).addItem(shortSword);
 
         world.run();
     }

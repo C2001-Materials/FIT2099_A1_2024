@@ -3,6 +3,8 @@ package game;
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.actors.attributes.BaseActorAttribute;
+import edu.monash.fit2099.engine.actors.attributes.BaseActorAttributes;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
@@ -26,6 +28,8 @@ public class Player extends Actor {
         super(name, displayChar, hitPoints);
         this.addCapability(Status.HOSTILE_TO_ENEMY);
         this.setIntrinsicWeapon(new BareFist());
+        this.addAttribute(BaseActorAttributes.MANA, new BaseActorAttribute(100));
+        this.addAttribute(TarnishedActorAttributes.STRENGTH, new BaseActorAttribute(5));
     }
 
     @Override
@@ -36,6 +40,14 @@ public class Player extends Actor {
 
         // return/print the console menu
         Menu menu = new Menu(actions);
+        display.println(this.toString());
         return menu.showMenu(this, display);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " , "
+                + "Mana: (" + this.getAttribute(BaseActorAttributes.MANA) + "/" + this.getAttributeMaximum(BaseActorAttributes.MANA) + " ) "
+                + "Strength: (" + this.getAttribute(TarnishedActorAttributes.STRENGTH) + ") ";
     }
 }
