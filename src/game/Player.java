@@ -14,6 +14,7 @@ import edu.monash.fit2099.engine.displays.Menu;
  * Created by:
  * @author Adrian Kristanto
  * Modified by:
+ * Aaron Lam Kong Yew
  *
  */
 public class Player extends Actor {

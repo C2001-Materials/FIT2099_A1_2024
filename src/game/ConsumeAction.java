@@ -14,11 +14,11 @@ public class ConsumeAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         consumableItem.consume(actor);
-        return actor + " consumes " + consumableItem;
+        return menuDescription(actor);
     }
 
     @Override
     public String menuDescription(Actor actor) {
-        return "Consume " + consumableItem;
+        return actor + " consumes " + consumableItem;
     }
 }

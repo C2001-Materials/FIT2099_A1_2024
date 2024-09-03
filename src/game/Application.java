@@ -55,9 +55,15 @@ public class Application {
         WeaponItem greatKnife = new GreatKnife();
         WeaponItem shortSword = new ShortSword();
 
+        FlaskOfHealing flaskOfHealing = new FlaskOfHealing();
+        FlaskOfRejuvenation flaskOfRejuvenation = new FlaskOfRejuvenation();
+
         gameMap.at(42, 4).addActor(new FurnaceGolem());
         gameMap.at(6, 4).addItem(greatKnife);
         gameMap.at(8, 4).addItem(shortSword);
+
+        gameMap.at(6, 5).addItem(flaskOfHealing);
+        gameMap.at(8, 5).addItem(flaskOfRejuvenation);
 
         world.run();
     }
