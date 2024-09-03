@@ -13,8 +13,12 @@ public class ConsumeAction extends Action {
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        consumableItem.consume(actor);
-        return menuDescription(actor);
+        boolean consumed = consumableItem.consume(actor);
+        if (consumed) {
+            return menuDescription(actor);
+        } else {
+            return consumableItem + " is empty";
+        }
     }
 
     @Override

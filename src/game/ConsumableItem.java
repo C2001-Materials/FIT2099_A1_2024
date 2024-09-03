@@ -21,5 +21,5 @@ public abstract class ConsumableItem extends Item implements Consumable {
     }
 
     @Override
-    public abstract String consume(Actor actor);
+    public abstract boolean consume(Actor actor);
 }
