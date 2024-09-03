@@ -44,12 +44,10 @@ public class WeaponItem extends Item implements Weapon {
 
     @Override
     public PickUpAction getPickUpAction(Actor actor) {
-        if (portable && actor instanceof Tarnished) {
-            if (((Tarnished) actor).getAttribute(TarnishedActorAttributes.STRENGTH) // TODO: Dont use isinstanceof
+            if (actor.getAttribute(TarnishedActorAttributes.STRENGTH)
                     >= this.getRequiredStrength()) {
-                return new PickUpAction(this);
+                return super.getPickUpAction(actor);
             }
-        }
         return null;
     }
 
