@@ -58,12 +58,24 @@ public class Application {
         FlaskOfHealing flaskOfHealing = new FlaskOfHealing();
         FlaskOfRejuvenation flaskOfRejuvenation = new FlaskOfRejuvenation();
 
+        ShadowtreeFragment stF1 = new ShadowtreeFragment();
+        ShadowtreeFragment stF2 = new ShadowtreeFragment();
+        ShadowtreeFragment stF3 = new ShadowtreeFragment();
+        ShadowtreeFragment stF4 = new ShadowtreeFragment();
+        ShadowtreeFragment stF5 = new ShadowtreeFragment();
+
         gameMap.at(42, 4).addActor(new FurnaceGolem());
         gameMap.at(6, 4).addItem(greatKnife);
         gameMap.at(8, 4).addItem(shortSword);
 
         gameMap.at(6, 5).addItem(flaskOfHealing);
         gameMap.at(8, 5).addItem(flaskOfRejuvenation);
+
+        gameMap.at(16, 4).addItem(stF1);
+        gameMap.at(17, 5).addItem(stF2);
+        gameMap.at(18, 6).addItem(stF3);
+        gameMap.at(19, 7).addItem(stF4);
+        gameMap.at(20, 8).addItem(stF5);
 
         world.run();
     }
