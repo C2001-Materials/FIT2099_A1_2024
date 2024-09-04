@@ -43,9 +43,12 @@ public class FollowBehaviour implements Behaviour {
         int currentDistance = distance(here, there);
         for (Exit exit : here.getExits()) {
             Location destination = exit.getDestination();
-            if (destination.canActorEnter(actor)) {
+            if (destination.canActorEnter(actor) //&& destination.getGround().getDisplayChar() != '_'
+            )
+            {
                 int newDistance = distance(destination, there);
                 if (newDistance < currentDistance) {
+                    System.out.println(actor + " is following " + target);
                     return new MoveActorAction(destination, exit.getName());
                 }
             }

@@ -50,7 +50,7 @@ public class Application {
         }
 
         Player tarnished = new Player("Tarnished", '@', 150);
-        world.addPlayer(tarnished, gameMap.at(7, 4));
+        world.addPlayer(tarnished, gameMap.at(7, 8));
 
         WeaponItem greatKnife = new GreatKnife();
         WeaponItem shortSword = new ShortSword();
@@ -64,7 +64,7 @@ public class Application {
         ShadowtreeFragment stF4 = new ShadowtreeFragment();
         ShadowtreeFragment stF5 = new ShadowtreeFragment();
 
-        gameMap.at(42, 4).addActor(new FurnaceGolem());
+        gameMap.at(7, 9).addActor(new FurnaceGolem());
         gameMap.at(6, 7).addItem(greatKnife);
         gameMap.at(8, 8).addItem(shortSword);
 
