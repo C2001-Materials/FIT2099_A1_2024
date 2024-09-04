@@ -18,6 +18,7 @@ import java.util.Map;
  */
 public class FurnaceGolem extends Actor {
     private Map<Integer, Behaviour> behaviours = new HashMap<>();
+    private Actor target;
 
     public FurnaceGolem() {
         super("Furnace Golem", 'A', 1000);
@@ -26,10 +27,19 @@ public class FurnaceGolem extends Actor {
 
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+        if (target != null && FollowBehaviourUtil.isAdjacent(map.locationOf(this), map.locationOf(target))) {
+            System.out.println("Furnace Golem is following target"); // range <= 2
+            this.behaviours.put(1, new FollowBehaviour(target));
+        } else {
+            //this.behaviours.remove(1);
+        }
+
+
         for (Behaviour behaviour : behaviours.values()) {
             Action action = behaviour.getAction(this, map);
-            if(action != null)
+            if(action != null) {
                 return action;
+            }
         }
         return new DoNothingAction();
     }
@@ -39,6 +49,7 @@ public class FurnaceGolem extends Actor {
         ActionList actions = new ActionList();
         if (otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
             actions.add(new AttackAction(this, direction));
+            this.target = otherActor;
         }
         return actions;
     }
