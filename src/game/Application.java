@@ -7,6 +7,19 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
+import game.actors.FurnaceGolem;
+import game.actors.Player;
+import game.displays.FancyMessage;
+import game.positions.grounds.Dirt;
+import game.positions.grounds.Floor;
+import game.positions.grounds.Puddle;
+import game.positions.grounds.Wall;
+import game.consumables.consumableitems.FlaskOfHealing;
+import game.consumables.consumableitems.FlaskOfRejuvenation;
+import game.consumables.consumableitems.ShadowtreeFragment;
+import game.weapons.weaponitems.GreatKnife;
+import game.weapons.weaponitems.ShortSword;
+import game.weapons.weaponitems.WeaponItem;
 
 /**
  * The main class to start the game.
