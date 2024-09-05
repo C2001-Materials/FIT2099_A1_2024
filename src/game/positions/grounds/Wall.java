@@ -14,10 +14,19 @@ import game.abilites.TraversableAbility;
  */
 public class Wall extends Ground {
 
+    /**
+     * Constructor.
+     */
     public Wall() {
         super('#', "Wall");
     }
 
+    /**
+     * Checks if an actor can enter the wall.
+     * The actor must have the TraversableAbility.WALLTRAVERSABLE ability.
+     * @param actor the actor to check
+     * @return true if the actor can enter, false otherwise
+     */
     @Override
     public boolean canActorEnter(Actor actor) {
         return actor.hasCapability(TraversableAbility.WALLTRAVERSABLE);

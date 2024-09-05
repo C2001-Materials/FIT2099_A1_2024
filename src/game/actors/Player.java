@@ -38,6 +38,14 @@ public class Player extends Actor {
         this.addAttribute(TarnishedActorAttributes.STRENGTH, new BaseActorAttribute(5));
     }
 
+    /**
+     * Player's turn in World
+     * @param actions the actions that the player can perform
+     * @param lastAction the last action that the player performed
+     * @param map the map that the player is on
+     * @param display the display that shows the game
+     * @return the action that the player will perform
+     */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
         // Handle multi-turn Actions

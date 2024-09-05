@@ -26,10 +26,15 @@ import game.weapons.weaponitems.WeaponItem;
  * Created by:
  * @author Adrian Kristanto
  * Modified by:
+ * Aaron Lam Kong Yew
  *
  */
 public class Application {
 
+    /**
+     * The main method to run the game/ program.
+     * @param args the arguments to start the game
+     */
     public static void main(String[] args) {
 
         World world = new World(new Display());

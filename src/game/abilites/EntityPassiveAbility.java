@@ -1,8 +1,8 @@
 package game.abilites;
 
 /**
- * Use this enum to represent abilities.
- * Example #1: if the player is capable jumping over walls, you can attach Ability.WALL_JUMP to the player class
+ * Extra non-damaging abilities that an entity can have.
+ * @author Aaron Lam Kong Yew
  */
 public enum EntityPassiveAbility {
     FIRE_RESISTANCE,

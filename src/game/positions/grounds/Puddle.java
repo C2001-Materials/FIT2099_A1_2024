@@ -12,6 +12,11 @@ import game.abilites.EntityPassiveAbility;
  *
  */
 public class Puddle extends Ground {
+
+    /**
+     * Constructor.
+     * The puddle cannot be overriden by fire (w).
+     */
     public Puddle() {
         super('~', "Puddle");
         addCapability(EntityPassiveAbility.FIRE_RESISTANCE);

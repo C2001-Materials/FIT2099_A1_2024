@@ -13,13 +13,27 @@ import java.util.Random;
 
 /**
  * Class representing items that can be used as a weapon.
+ * @author Adrian Kristanto
+ * Modified by Aaron Lam Kong Yew
  */
 public class WeaponItem extends Item implements Weapon {
+
+    /** Default damage multiplier */
     private static final float DEFAULT_DAMAGE_MULTIPLIER = 1.0f;
+
+    /** Damage of the weapon */
     private int damage;
+
+    /** Hit rate of the weapon */
     private int hitRate;
+
+    /** Verb to use for this weapon */
     private final String verb;
+
+    /** Damage multiplier of the current weapon */
     private float damageMultiplier;
+
+    /** Added: Required strength to wield the weapon */
     private int requiredStrength;
 
     /**
@@ -40,12 +54,22 @@ public class WeaponItem extends Item implements Weapon {
         this.requiredStrength = requiredStrength;
     }
 
+    /**
+     *  Retrieves the required strength to pick up the weapon.
+     * @return requiredStrength of the weapon, as an integer
+     */
     public int getRequiredStrength() {
         return requiredStrength;
     }
 
+    /**
+     * Overrides the default getPickUpAction of the Item class
+     * Compares the strength of the actor with the required strength of the weapon
+     * @param actor the actor that wants to pick up the weapon
+     * @return a PickUpAction if the actor has the required strength to pick up the weapon, null otherwise
+     */
     @Override
-    public PickUpAction getPickUpAction(Actor actor) { // new method
+    public PickUpAction getPickUpAction(Actor actor) {
             if ( actor.hasAttribute(TarnishedActorAttributes.STRENGTH)
                      && actor.getAttribute(TarnishedActorAttributes.STRENGTH) >= this.getRequiredStrength()) {
                 return super.getPickUpAction(actor);
@@ -53,6 +77,12 @@ public class WeaponItem extends Item implements Weapon {
         return null;
     }
 
+    /**
+     * A weapon can be used to attack an actor so, I call AttackAction!
+     * @param otherActor the actor to be attacked
+     * @param location the location of the actor
+     * @return a list of allowable actions
+     */
     @Override
     public ActionList allowableActions(Actor otherActor, Location location) {
         ActionList actions = new ActionList();
@@ -60,6 +90,11 @@ public class WeaponItem extends Item implements Weapon {
         return actions;
     }
 
+    /**
+     * Implements the attack method from the Weapon interface.
+     * Attack the target actor with the weapon.
+     * @return A string representing the result of the attack
+     */
     @Override
     public String attack(Actor attacker, Actor target, GameMap map) {
         Random rand = new Random();

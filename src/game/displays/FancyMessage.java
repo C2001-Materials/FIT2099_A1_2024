@@ -9,8 +9,13 @@ import edu.monash.fit2099.engine.displays.Display;
  * Created by:
  * @author Adrian Kristanto
  * Modified by:
+ * Aaron Lam Kong Yew
  */
 public class FancyMessage {
+
+    /**
+     * The title of the game.
+     */
     public static String TITLE =
                     "`7MM\"\"\"YMM  `7MMF'      `7MM\"\"\"Yb. `7MM\"\"\"YMM  `7MN.   `7MF'    MMP\"\"MM\"\"YMM `7MMF'  `7MMF'`7MMF'`7MN.   `7MF' .g8\"\"\"bgd  \n" +
                     "  MM    `7    MM          MM    `Yb. MM    `7    MMN.    M      P'   MM   `7   MM      MM    MM    MMN.    M .dP'     `M  \n" +
@@ -20,6 +25,9 @@ public class FancyMessage {
                     "  MM     ,M   MM     ,M   MM    ,dP' MM     ,M   M     YMM           MM        MM      MM    MM    M     YMM `Mb.     MM  \n" +
                     ".JMMmmmmMMM .JMMmmmmMMM .JMMmmmdP' .JMMmmmmMMM .JML.    YM         .JMML.    .JMML.  .JMML..JMML..JML.    YM   `\"bmmmdPY  \n";
 
+    /**
+     * The "You Died" message.
+     */
     public static String YOU_DIED =
                     "`YMM'   `MM' .g8\"\"8q. `7MMF'   `7MF'    `7MM\"\"\"Yb. `7MMF'`7MM\"\"\"YMM  `7MM\"\"\"Yb.   \n" +
                     "  VMA   ,V .dP'    `YM. MM       M        MM    `Yb. MM    MM    `7    MM    `Yb. \n" +
@@ -29,6 +37,10 @@ public class FancyMessage {
                     "     MM    `Mb.    ,dP' YM.     ,M        MM    ,dP' MM    MM     ,M   MM    ,dP' \n" +
                     "   .JMML.    `\"bmmd\"'    `bmmmmd\"'      .JMMmmmdP' .JMML..JMMmmmmMMM .JMMmmmdP'   \n";
 
+    /**
+     * Prints the title of the game.
+     * Uses Thread.sleep to print the title line by line.
+     */
     public static void printTitle() {
         for (String line : FancyMessage.TITLE.split("\n")) {
             new Display().println(line);
@@ -40,6 +52,10 @@ public class FancyMessage {
         }
     }
 
+    /**
+     * Prints the "You Died" message.
+     * Uses Thread.sleep to print the message line by line.
+     */
     public static void printYouDied() {
         for (String line : FancyMessage.YOU_DIED.split("\n")) {
             new Display().println(line);

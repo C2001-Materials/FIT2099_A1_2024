@@ -18,6 +18,9 @@ import java.util.Random;
  */
 public class WanderBehaviour implements Behaviour {
 
+    /**
+     * Random number generator
+     */
     private final Random random = new Random();
 
     /**

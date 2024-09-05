@@ -8,6 +8,9 @@ import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
  */
 public class Foot  extends IntrinsicWeapon {
 
+    /**
+     * Constructor.
+     */
     public Foot() {
         super(100, "stomps", 5);
 

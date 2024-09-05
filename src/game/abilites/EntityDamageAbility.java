@@ -1,8 +1,9 @@
 package game.abilites;
 
 /**
- * Extra attack abilities that an entity can have,
- * alongside their default attack action.
+ * Extra attacking abilities that an entity can have,
+ * besides their default attack action.
+ * @author Aaron Lam Kong Yew
  */
 public enum EntityDamageAbility {
     EXPLOSION,

@@ -52,6 +52,12 @@ public class AttackAction extends Action {
         this.direction = direction;
     }
 
+    /**
+     * Execute the attack action
+     * @param actor The actor performing the action
+     * @param map The map the actor is on
+     * @return A string describing the result of the action
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
         if (weapon == null) {
@@ -66,6 +72,12 @@ public class AttackAction extends Action {
         return result;
     }
 
+    /**
+     * Returns a description of the action.
+     *
+     * @param actor The actor performing the action
+     * @return a String representing the description of the action
+     */
     @Override
     public String menuDescription(Actor actor) {
         return actor + " attacks " + target + " at " + direction + " with " + (weapon != null ? weapon : "Intrinsic Weapon");

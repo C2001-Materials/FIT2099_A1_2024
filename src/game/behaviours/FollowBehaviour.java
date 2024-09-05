@@ -12,16 +12,20 @@ import edu.monash.fit2099.engine.actors.Behaviour;
 /**
  * A class that figures out a MoveAction that will move the actor one step
  * closer to a target Actor.
+ * @see edu.monash.fit2099.demo.mars.behaviours.FollowBehaviour
  * @see edu.monash.fit2099.demo.mars.Application
  *
  * Created by:
  * @author Riordan D. Alfredo
- * Modified by:
+ * Copypasted and Modified by:
  * Aaron Lam Kong Yew
  *
  */
 public class FollowBehaviour implements Behaviour {
 
+    /**
+     * The target Actor to follow
+     */
     private final Actor target;
 
     /**
@@ -33,6 +37,13 @@ public class FollowBehaviour implements Behaviour {
         this.target = subject;
     }
 
+    /**
+     * Get the MoveActorAction to move the actor one step closer to the target Actor.
+     *
+     * @param actor the Actor that might be following
+     * @param map the GameMap containing the Actor
+     * @return a MoveActorAction that moves the Actor one step closer to the target Actor
+     */
     @Override
     public Action getAction(Actor actor, GameMap map) {
         if(!map.contains(target) || !map.contains(actor))
@@ -44,9 +55,7 @@ public class FollowBehaviour implements Behaviour {
         int currentDistance = distance(here, there);
         for (Exit exit : here.getExits()) {
             Location destination = exit.getDestination();
-            if (destination.canActorEnter(actor) //&& destination.getGround().getDisplayChar() != '_'
-            )
-            {
+            if (destination.canActorEnter(actor)) {
                 int newDistance = distance(destination, there);
                 if (newDistance < currentDistance) {
                     new Display().println(actor + " is following " + target);
