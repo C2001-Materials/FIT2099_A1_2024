@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.positions.Ground;
  * Created by:
  * @author Riordan D. Alfredo
  * Modified by:
+ * Aaron Lam Kong Yew
  *
  */
 public class Floor extends Ground {
@@ -17,7 +18,7 @@ public class Floor extends Ground {
 
     @Override
     public boolean canActorEnter(Actor actor) {
-        return actor.hasCapability(GroundCapabilities.FLOORTRAVERSABLE);
+        return actor.hasCapability(Traversables.FLOORTRAVERSABLE);
     }
 }
 

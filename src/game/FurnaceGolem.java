@@ -5,12 +5,9 @@ import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.actors.Behaviour;
-import edu.monash.fit2099.engine.actors.attributes.BaseActorAttribute;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
-import edu.monash.fit2099.engine.weapons.Weapon;
 
-import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,9 +24,10 @@ public class FurnaceGolem extends Actor {
         super("Furnace Golem", 'A', 1000);
         this.behaviours.put(999, new WanderBehaviour());
         this.addCapability(Status.HOSTILE_TO_ENEMY);
-        this.setIntrinsicWeapon(new Feet());
-        this.addCapability(WeaponAbility.EXPLOSION);
-        this.addCapability(WeaponAbility.FIRERING);
+        this.setIntrinsicWeapon(new Foot());
+        this.addCapability(EntityDamageAbility.EXPLOSION);
+        this.addCapability(EntityDamageAbility.FIRE_RING);
+        this.addCapability(EntityPassiveAbility.FIRE_RESISTANCE);
     }
 
     @Override
@@ -39,10 +37,8 @@ public class FurnaceGolem extends Actor {
             this.behaviours.put(1, new FollowBehaviour(target));
             this.behaviours.put(0, new AttackBehaviour(target));
         } else {
-            //this.behaviours.remove(1);
             this.behaviours.remove(0);
         }
-
 
         for (Behaviour behaviour : behaviours.values()) {
             Action action = behaviour.getAction(this, map);
@@ -63,11 +59,4 @@ public class FurnaceGolem extends Actor {
         return actions;
     }
 
-    public void addBehaviour(int priority, Behaviour behaviour) {
-        this.behaviours.put(priority, behaviour);
-    }
-
-    public Weapon getWeapon() {
-        return this.getIntrinsicWeapon();
-    }
 }
