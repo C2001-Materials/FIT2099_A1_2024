@@ -7,6 +7,19 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
+import game.actors.FurnaceGolem;
+import game.actors.Player;
+import game.displays.FancyMessage;
+import game.positions.grounds.Dirt;
+import game.positions.grounds.Floor;
+import game.positions.grounds.Puddle;
+import game.positions.grounds.Wall;
+import game.consumables.consumableitems.FlaskOfHealing;
+import game.consumables.consumableitems.FlaskOfRejuvenation;
+import game.consumables.consumableitems.ShadowtreeFragment;
+import game.weapons.weaponitems.GreatKnife;
+import game.weapons.weaponitems.ShortSword;
+import game.weapons.weaponitems.WeaponItem;
 
 /**
  * The main class to start the game.
@@ -43,7 +56,7 @@ public class Application {
         FancyMessage.printTitle();
 
         Player tarnished = new Player("Tarnished", '@', 150);
-        world.addPlayer(tarnished, gameMap.at(7, 8));
+        world.addPlayer(tarnished, gameMap.at(7, 4));
 
         WeaponItem greatKnife = new GreatKnife();
         WeaponItem shortSword = new ShortSword();
@@ -57,7 +70,7 @@ public class Application {
         ShadowtreeFragment stF4 = new ShadowtreeFragment();
         ShadowtreeFragment stF5 = new ShadowtreeFragment();
 
-        gameMap.at(7, 9).addActor(new FurnaceGolem());
+        gameMap.at(42, 4).addActor(new FurnaceGolem());
         gameMap.at(6, 7).addItem(greatKnife);
         gameMap.at(8, 8).addItem(shortSword);
 
