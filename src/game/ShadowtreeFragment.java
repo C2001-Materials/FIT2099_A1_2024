@@ -15,11 +15,11 @@ public class ShadowtreeFragment extends ConsumableItem {
         actor.modifyAttributeMaximum(BaseActorAttributes.MANA, ActorAttributeOperations.INCREASE, 25);
         actor.modifyAttributeMaximum(TarnishedActorAttributes.STRENGTH, ActorAttributeOperations.INCREASE, 5);
 
-        // TODO: Restore current Health and Mana to maximum
+        // Restore current Health and Mana to maximum
         actor.heal(actor.getAttributeMaximum(BaseActorAttributes.HEALTH) - actor.getAttribute(BaseActorAttributes.HEALTH));
         actor.modifyAttribute(BaseActorAttributes.MANA, ActorAttributeOperations.UPDATE, actor.getAttributeMaximum(BaseActorAttributes.MANA));
 
-        // TODO: Remove the item from the player's inventory, if it is in there
+        // Remove the item from the player's inventory, if it is in there
         if (actor.getItemInventory().contains(this)){
             actor.removeItemFromInventory(this);
         }

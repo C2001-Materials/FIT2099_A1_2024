@@ -1,5 +1,7 @@
 package game;
 
+import edu.monash.fit2099.engine.displays.Display;
+
 /**
  * Fancy messages used to print the game title
  * Font obtained from: <a href="https://patorjk.com/software/taag/#p=display&f=Georgia11&t=">link</a>
@@ -26,4 +28,26 @@ public class FancyMessage {
                     "     MM    MM.      ,MP MM       M        MM     ,MP MM    MM   Y  ,   MM     ,MP \n" +
                     "     MM    `Mb.    ,dP' YM.     ,M        MM    ,dP' MM    MM     ,M   MM    ,dP' \n" +
                     "   .JMML.    `\"bmmd\"'    `bmmmmd\"'      .JMMmmmdP' .JMML..JMMmmmmMMM .JMMmmmdP'   \n";
+
+    public static void printTitle() {
+        for (String line : FancyMessage.TITLE.split("\n")) {
+            new Display().println(line);
+            try {
+                Thread.sleep(200);
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+        }
+    }
+
+    public static void printYouDied() {
+        for (String line : FancyMessage.YOU_DIED.split("\n")) {
+            new Display().println(line);
+            try {
+                Thread.sleep(200);
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+        }
+    }
 }

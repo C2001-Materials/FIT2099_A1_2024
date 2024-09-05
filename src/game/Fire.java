@@ -1,6 +1,7 @@
 package game;
 
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
 
@@ -26,7 +27,7 @@ public class Fire extends Ground {
         // Check if there is an actor on this location
         Actor actor = location.getActor();
         if (actor != null && !actor.hasCapability(EntityPassiveAbility.FIRE_RESISTANCE)) {
-            System.out.println(actor + "is standing on flames!" + burnDamage + " damage is dealt.");
+            new Display().println(actor + " is standing on flames! " + burnDamage + " damage will be dealt.");
             actor.hurt(burnDamage);
         }
     }

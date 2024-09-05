@@ -40,14 +40,7 @@ public class Application {
         world.addGameMap(gameMap);
 
         // BEHOLD, ELDEN THING!
-        for (String line : FancyMessage.TITLE.split("\n")) {
-            new Display().println(line);
-            try {
-                Thread.sleep(200);
-            } catch (Exception exception) {
-                exception.printStackTrace();
-            }
-        }
+        FancyMessage.printTitle();
 
         Player tarnished = new Player("Tarnished", '@', 150);
         world.addPlayer(tarnished, gameMap.at(7, 8));

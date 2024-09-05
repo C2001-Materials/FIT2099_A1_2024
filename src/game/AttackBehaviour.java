@@ -19,7 +19,7 @@ public class AttackBehaviour implements Behaviour {
         Location there = map.locationOf(target);
 
 
-        if (FollowBehaviourUtil.isAdjacent(here, there)) {
+        if (LocationUtils.isAdjacent(here, there)) {
             return new StompAction(target, here.toString());
         }
         return null;

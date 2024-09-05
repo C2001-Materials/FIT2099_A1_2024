@@ -2,6 +2,7 @@ package game;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.actions.Action;
+import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
@@ -48,7 +49,7 @@ public class FollowBehaviour implements Behaviour {
             {
                 int newDistance = distance(destination, there);
                 if (newDistance < currentDistance) {
-                    System.out.println(actor + " is following " + target);
+                    new Display().println(actor + " is following " + target);
                     return new MoveActorAction(destination, exit.getName());
                 }
             }

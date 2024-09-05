@@ -32,8 +32,8 @@ public class FurnaceGolem extends Actor {
 
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-        if (target != null && FollowBehaviourUtil.isAdjacent(map.locationOf(this), map.locationOf(target))) {
-            System.out.println("The target is within Stomping Range!");
+        if (target != null && LocationUtils.isAdjacent(map.locationOf(this), map.locationOf(target))) {
+            display.println("Player is within Stomping Range!");
             this.behaviours.put(1, new FollowBehaviour(target));
             this.behaviours.put(0, new AttackBehaviour(target));
         } else {

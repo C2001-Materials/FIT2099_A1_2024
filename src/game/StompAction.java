@@ -1,6 +1,7 @@
 package game;
 
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
@@ -17,36 +18,40 @@ import java.util.Set;
  * and set surrounding ground on fire.
  */
 public class StompAction extends AttackAction {
+    private Actor target;
     private static final double EXPLOSION_CHANCE = 10;
     private static final int EXPLOSION_DAMAGE = 50;
 
     public StompAction(Actor target, String direction) {
         super(target, direction, null);
+        this.target = target;
     }
 
     @Override
     public String execute(Actor actor, GameMap map) {
         String result =  super.execute(actor, map);
 
+        List<Location> surroundingLocations = LocationUtils.getSurroundingLocations(map.locationOf(actor));
         if (actor.hasCapability((EntityDamageAbility.EXPLOSION))) {
             Random rand = new Random();
             if (rand.nextInt(100) < EXPLOSION_CHANCE) {
                 result += "\n" + actor + "'s stomp attack results in a shockwave in the surrounding areas.";
-                result += dealExplosionDamage(map.locationOf(actor), map);
+                result += dealExplosionDamage(surroundingLocations, map);
                 if (actor.hasCapability(EntityDamageAbility.FIRE_RING)) {
-                    setSurroundingGroundOnFire(map.locationOf(actor), map);
+                    setSurroundingGroundOnFire(surroundingLocations, map);
                 }
             }
+        }
+        if (!target.isConscious()) {
+            // BEHOLD, YOU DIED!
+            FancyMessage.printYouDied();
+            map.removeActor(target);
         }
         return result;
     }
 
-    private String dealExplosionDamage(Location location, GameMap map) {
+    private String dealExplosionDamage( List<Location> surroundingLocations, GameMap map) {
         String result = "";
-        List<Location> surroundingLocations = location.getExits().stream()
-                .map(exit -> exit.getDestination()) // TODO: use eta conversion
-                .toList();
-
         for (Location loc : surroundingLocations) {
             if (map.isAnActorAt(loc)) {
                 Actor actor = map.getActorAt(loc);
@@ -57,12 +62,7 @@ public class StompAction extends AttackAction {
         return result;
     }
 
-
-    private void setSurroundingGroundOnFire(Location location, GameMap map) {
-        List<Location> surroundingLocations = location.getExits().stream()
-                .map(exit -> exit.getDestination())
-                .toList();
-
+    private void setSurroundingGroundOnFire( List<Location> surroundingLocations, GameMap map) {
         for (Location loc : surroundingLocations) {
             Ground ground = loc.getGround();
             if (!ground.hasCapability(EntityPassiveAbility.FIRE_RESISTANCE)) {
@@ -70,8 +70,6 @@ public class StompAction extends AttackAction {
             }
         }
     }
-
-
 
 }
 

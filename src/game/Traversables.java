@@ -6,5 +6,5 @@ package game;
  */
 public enum Traversables {
     FLOORTRAVERSABLE,
-    WALLTRAVERSABLE, // TODO: Add this capability in the future for spiders to traverse walls
+    WALLTRAVERSABLE, // Add this capability in the future for spiders to traverse walls
 }
