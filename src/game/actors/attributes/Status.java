@@ -1,4 +1,4 @@
-package game;
+package game.actors.attributes;
 
 /**
  * Use this enum class to represent a status.
