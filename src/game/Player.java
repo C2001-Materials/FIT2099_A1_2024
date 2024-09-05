@@ -28,7 +28,7 @@ public class Player extends Actor {
     public Player(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints);
         this.addCapability(Status.HOSTILE_TO_ENEMY);
-        addCapability(GroundCapabilities.FLOORTRAVERSABLE);
+        this.addCapability(GroundCapabilities.FLOORTRAVERSABLE);
         this.setIntrinsicWeapon(new BareFist());
         this.addAttribute(BaseActorAttributes.MANA, new BaseActorAttribute(100));
         this.addAttribute(TarnishedActorAttributes.STRENGTH, new BaseActorAttribute(5));

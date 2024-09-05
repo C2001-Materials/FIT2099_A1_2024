@@ -28,7 +28,8 @@ public class FurnaceGolem extends Actor {
         this.behaviours.put(999, new WanderBehaviour());
         this.addCapability(Status.HOSTILE_TO_ENEMY);
         this.setIntrinsicWeapon(new Feet());
-        this.addAttribute(TarnishedActorAttributes.STRENGTH, new BaseActorAttribute(0)); // Furnace Golem has no strength to pick up weapon
+        this.addCapability(WeaponAbility.EXPLOSION);
+        this.addCapability(WeaponAbility.FIRERING);
     }
 
     @Override

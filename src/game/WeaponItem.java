@@ -44,8 +44,8 @@ public class WeaponItem extends Item implements Weapon {
 
     @Override
     public PickUpAction getPickUpAction(Actor actor) { // new method
-            if (
-                    actor.getAttribute(TarnishedActorAttributes.STRENGTH) >= this.getRequiredStrength()) {
+            if ( actor.hasAttribute(TarnishedActorAttributes.STRENGTH)
+                     && actor.getAttribute(TarnishedActorAttributes.STRENGTH) >= this.getRequiredStrength()) {
                 return super.getPickUpAction(actor);
             }
         return null;
