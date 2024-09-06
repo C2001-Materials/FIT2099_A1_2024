@@ -5,6 +5,8 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
 import game.displays.FancyMessage;
+import game.effects.ExplosionEffect;
+import game.effects.FireRingEffect;
 import game.positions.grounds.Fire;
 import game.positions.LocationUtils;
 import game.abilites.EntityDamageAbility;
@@ -33,9 +35,14 @@ public class StompAction extends AttackAction {
     private static final double EXPLOSION_CHANCE = 10;
 
     /**
-     * The amount of damage dealt by the explosion
+     * An explosion effect that deals extra explosion damage to surrounding actors
      */
-    private static final int EXPLOSION_DAMAGE = 50;
+    private ExplosionEffect explosionEffect = new ExplosionEffect();
+
+    /**
+     * A fire ring effect that sets surrounding ground on fire
+     */
+    private FireRingEffect fireRingEffect = new FireRingEffect();
 
     /**
      * Constructor.
@@ -64,54 +71,20 @@ public class StompAction extends AttackAction {
             Random rand = new Random();
             if (rand.nextInt(100) < EXPLOSION_CHANCE) {
                 result += "\n" + actor + "'s stomp attack results in a shockwave in the surrounding areas.";
-                result += dealExplosionDamage(surroundingLocations, map);
+                result += explosionEffect.applyEffect(actor, surroundingLocations, map);
 
                 // Some actors' stomp may only cause explosion damage,
                 // while others may set-off a chain reaction, setting surrounding ground on fire.
                 if (actor.hasCapability(EntityDamageAbility.FIRE_RING)) {
-                    setSurroundingGroundOnFire(surroundingLocations, map);
+                    result += fireRingEffect.applyEffect(actor, surroundingLocations, map);
                 }
             }
         }
         if (!target.isConscious()) {
-            // BEHOLD, YOU DIED!
             FancyMessage.printYouDied();
             map.removeActor(target);
         }
         return result;
-    }
-
-    /**
-     * Deals extra explosion damage to surrounding actors.
-     * @param surroundingLocations a list of surrounding locations
-     * @param map the game map
-     * @return a string describing the result of the explosion damage
-     */
-    private String dealExplosionDamage( List<Location> surroundingLocations, GameMap map) {
-        String result = "";
-        for (Location loc : surroundingLocations) {
-            if (map.isAnActorAt(loc)) {
-                Actor actor = map.getActorAt(loc);
-                actor.hurt(EXPLOSION_DAMAGE);
-                result += "\n" + actor + " takes " + EXPLOSION_DAMAGE + " explosion damage.";
-            }
-        }
-        return result;
-    }
-
-    /**
-     * Sets surrounding ground on fire.
-     * May or may not depend on Explosion capability.
-     * @param surroundingLocations a list of surrounding locations
-     * @param map the game map
-     */
-    private void setSurroundingGroundOnFire( List<Location> surroundingLocations, GameMap map) {
-        for (Location loc : surroundingLocations) {
-            Ground ground = loc.getGround();
-            if (!ground.hasCapability(EntityPassiveAbility.FIRE_RESISTANCE)) {
-                loc.setGround(new Fire(ground));
-            }
-        }
     }
 
 }
