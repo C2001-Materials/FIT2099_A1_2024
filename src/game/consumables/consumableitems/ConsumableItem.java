@@ -37,7 +37,7 @@ public abstract class ConsumableItem extends Item implements Consumable {
      */
     @Override
     public ActionList allowableActions(Actor otherActor) {
-        ActionList actions = super.allowableActions(otherActor); // TODO: Be careful of parameter names
+        ActionList actions = super.allowableActions(otherActor);
             actions.add(new ConsumeAction(this));
 
         return actions;
