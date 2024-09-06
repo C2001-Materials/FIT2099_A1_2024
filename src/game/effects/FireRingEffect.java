@@ -10,6 +10,10 @@ import game.abilites.EntityPassiveAbility;
 
 import java.util.List;
 
+/**
+ * A class  that represents an effect that deals damage to actors,
+ * by changing the ground to fire.
+ */
 public class FireRingEffect implements DamageEffect {
 
     /**

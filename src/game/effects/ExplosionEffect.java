@@ -7,6 +7,9 @@ import game.abilites.EntityDamageAbility;
 
 import java.util.List;
 
+/**
+ * A class  that represents an effect that deals ExplosionEffect damage to actors.
+ */
 public class ExplosionEffect implements DamageEffect {
 
     /**
