@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
+import game.abilites.EntityDamageAbility;
 import game.positions.grounds.Fire;
 import game.abilites.EntityPassiveAbility;
 
@@ -11,6 +12,11 @@ import java.util.List;
 
 public class FireRingEffect implements DamageEffect {
 
+    /**
+     * Applies the effect of the fire ring.
+     * @param actor the actor causing the fire ring
+     * @param location the location of the fire ring
+     */
     @Override
     public void applyEffect(Actor actor, Location location) {
         // For future implementation
@@ -25,6 +31,10 @@ public class FireRingEffect implements DamageEffect {
      */
     @Override
     public String applyEffect(Actor actor, List<Location> locations, GameMap map) {
+        if (!actor.hasCapability(EntityDamageAbility.FIRE_RING)) {
+            return "";
+        }
+
         for (Location loc : locations) {
             Ground ground = loc.getGround();
             if (!ground.hasCapability(EntityPassiveAbility.FIRE_RESISTANCE)) {

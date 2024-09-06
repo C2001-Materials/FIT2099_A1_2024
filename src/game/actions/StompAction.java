@@ -67,18 +67,14 @@ public class StompAction extends AttackAction {
         String result =  super.execute(actor, map);
 
         List<Location> surroundingLocations = LocationUtils.getSurroundingLocations(map.locationOf(actor));
-        if (actor.hasCapability((EntityDamageAbility.EXPLOSION))) {
-            Random rand = new Random();
-            if (rand.nextInt(100) < EXPLOSION_CHANCE) {
-                result += "\n" + actor + "'s stomp attack results in a shockwave in the surrounding areas.";
-                result += explosionEffect.applyEffect(actor, surroundingLocations, map);
+        Random rand = new Random();
+        if (rand.nextInt(100) < EXPLOSION_CHANCE) {
+            result += "\n" + actor + "'s stomp attack results in a shockwave in the surrounding areas.";
+            result += explosionEffect.applyEffect(actor, surroundingLocations, map);
+            result += fireRingEffect.applyEffect(actor, surroundingLocations, map);
+            // Some actors' stomp may only cause explosion damage,
+            // while others may set-of a chain reaction, setting surrounding ground on fire.
 
-                // Some actors' stomp may only cause explosion damage,
-                // while others may set-off a chain reaction, setting surrounding ground on fire.
-                if (actor.hasCapability(EntityDamageAbility.FIRE_RING)) {
-                    result += fireRingEffect.applyEffect(actor, surroundingLocations, map);
-                }
-            }
         }
         if (!target.isConscious()) {
             FancyMessage.printYouDied();
@@ -86,6 +82,5 @@ public class StompAction extends AttackAction {
         }
         return result;
     }
-
 }
 
